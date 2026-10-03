@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Airbus A220 (€A220) — Use Cases</title>
+    <link rel="icon" href="a220_logo.png" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #0A0E27; color: #E0E6FF;
+            line-height: 1.6; padding-top: 80px; padding-bottom: 60px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        header {
+            position: fixed; top: 0; left: 0; width: 100%;
+            background: rgba(10, 14, 39, 0.92); backdrop-filter: blur(12px);
+            z-index: 100; border-bottom: 1px solid rgba(46,204,64,0.2);
+            padding: 10px 0;
+        }
+        .header-inner {
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 10px;
+        }
+        .logo { display: flex; align-items: center; gap: 8px; }
+        .logo img { height: 36px; width: auto; border-radius: 50%; }
+        .logo-text { font-size: 20px; font-weight: 700; color: #fff; }
+        nav { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+        nav a { color: #8A94C8; text-decoration: none; font-size: 12px; font-weight: 500; transition: 0.3s; }
+        nav a:hover { color: #2ECC40; }
+        nav a.active { color: #2ECC40; border-bottom: 2px solid #2ECC40; }
+        .btn-primary {
+            background: #2ECC40; color: #0A0E27; padding: 6px 18px;
+            border-radius: 30px; font-weight: 700; text-decoration: none;
+            transition: 0.3s; display: inline-block; font-size: 13px;
+        }
+        .btn-primary:hover { background: #4ADE5C; transform: scale(1.02); }
+        section { padding: 30px 0; }
+        .section-header { text-align: center; margin-bottom: 30px; }
+        .section-tag {
+            display: inline-block; background: rgba(46,204,64,0.12);
+            color: #2ECC40; padding: 4px 16px; border-radius: 20px;
+            font-size: 12px; font-weight: 600; text-transform: uppercase;
+        }
+        .section-header h1 { font-size: 34px; font-weight: 700; margin: 8px 0; }
+        .section-header h1 .highlight { color: #2ECC40; }
+        .section-header p { color: #8A94C8; max-width: 600px; margin: 0 auto; }
+        .categories {
+            display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+            margin-bottom: 24px;
+        }
+        .cat-btn {
+            background: rgba(26,30,65,0.5); border: 1px solid #1E2350;
+            color: #8A94C8; padding: 6px 18px; border-radius: 30px;
+            font-size: 13px; cursor: pointer; transition: 0.3s;
+        }
+        .cat-btn.active, .cat-btn:hover { background: #2ECC40; color: #0A0E27; border-color: #2ECC40; }
+        .fintech-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 14px; margin-bottom: 30px;
+        }
+        .fintech-card {
+            background: rgba(26,30,65,0.4); border: 1px solid #1E2350;
+            border-radius: 12px; padding: 16px 16px; transition: 0.3s; cursor: default;
+        }
+        .fintech-card:hover { border-color: #2ECC40; background: rgba(46,204,64,0.05); }
+        .fintech-card .fc-icon { font-size: 24px; }
+        .fintech-card .fc-title { font-size: 14px; font-weight: 600; color: #fff; margin-top: 6px; }
+        .fintech-card .fc-cat {
+            font-size: 10px; text-transform: uppercase; color: #5A649A;
+            letter-spacing: 0.5px; margin-top: 4px;
+        }
+        .contract-box {
+            background: rgba(46,204,64,0.05); border: 1px solid rgba(46,204,64,0.15);
+            border-radius: 12px; padding: 14px 16px; margin: 20px 0;
+            text-align: center; font-size: 13px; color: #8A94C8; font-family: 'Courier New', monospace;
+        }
+        .contract-box .addr { color: #2ECC40; }
+        .contract-box .copy-btn { background: transparent; border: none; color: #5A649A; cursor: pointer; font-size: 13px; font-family: 'Segoe UI', sans-serif; }
+        .contract-box .copy-btn:hover { color: #2ECC40; }
+        .contract-box .solscan-link { color: #5A649A; text-decoration: none; font-size: 13px; font-family: 'Segoe UI', sans-serif; margin-left: 8px; }
+        .contract-box .solscan-link:hover { color: #fff; }
+        .counter-box {
+            text-align: center; padding: 16px;
+            background: rgba(46,204,64,0.05); border-radius: 12px;
+            margin: 20px 0; font-size: 14px; color: #8A94C8;
+            font-family: 'Courier New', monospace;
+        }
+        .counter-box .counter-visitors { color: #2ECC40; font-weight: 600; }
+        .counter-box .counter-holders { color: #2ECC40; font-weight: 600; }
+        .counter-box .counter-clients { color: #2ECC40; font-weight: 600; }
+        .back-link { display: inline-block; margin-top: 16px; color: #2ECC40; text-decoration: none; font-weight: 500; }
+        .back-link:hover { text-decoration: underline; }
+        footer {
+            background: #060920; padding: 20px 0 16px; text-align: center;
+            border-top: 1px solid #1E2350; margin-top: 20px;
+        }
+        footer p { color: #3A406A; font-size: 13px; }
+        @media (max-width: 768px) {
+            .header-inner { flex-direction: column; align-items: stretch; }
+            nav { justify-content: center; gap: 6px; }
+            nav a { font-size: 10px; }
+            .section-header h1 { font-size: 26px; }
+            .fintech-grid { grid-template-columns: 1fr 1fr; }
+            .contract-box { font-size: 11px; }
+        }
+        @media (max-width: 480px) { .fintech-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-inner">
+        <div class="logo">
+            <img src="a220_logo.png" alt="Airbus A220" />
+            <span class="logo-text">AIRBUS A220 €A220</span>
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="fintech1.html" class="active">Use Cases</a>
+            <a href="fintech2.html">Leasing • Parts</a>
+            <a href="trade.html">Trade</a>
+            <a href="ecosystem.html">Ecosystem</a>
+        </nav>
+        <a href="buy.html" class="btn-primary">Buy €A220</a>
+    </div>
+</header>
+
+<section>
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Fintech</span>
+            <h1>Aircraft Sales & Parts <span class="highlight">Use Cases</span></h1>
+            <p>From SWIFT to 5000+ aircraft parts — €A220 powers global aviation finance.</p>
+        </div>
+
+        <div class="categories">
+            <button class="cat-btn active" data-cat="all">All</button>
+            <button class="cat-btn" data-cat="sales">Aircraft Sales</button>
+            <button class="cat-btn" data-cat="leasing">Leasing</button>
+            <button class="cat-btn" data-cat="parts">Parts</button>
+            <button class="cat-btn" data-cat="payments">Payments</button>
+        </div>
+
+        <div class="fintech-grid" id="fintechGrid"></div>
+
+        <div class="counter-box">
+            ✈️ Visitors: <span class="counter-visitors">2030</span>
+            &nbsp;·&nbsp;
+            📦 Holders: <span class="counter-holders">2</span>
+            &nbsp;·&nbsp;
+            🤝 Clients: <span class="counter-clients">0</span>
+        </div>
+
+        <div class="contract-box">
+            📜 Contract: <span class="addr">9e4d52thV9Tk5gSByJBMyzopDDdV1iNAmXYSskHEXtEY</span>
+            <button onclick="navigator.clipboard.writeText('9e4d52thV9Tk5gSByJBMyzopDDdV1iNAmXYSskHEXtEY')" class="copy-btn">📋 Copy</button>
+            <a href="https://solscan.io/token/9e4d52thV9Tk5gSByJBMyzopDDdV1iNAmXYSskHEXtEY" target="_blank" class="solscan-link">🔍 Solscan</a>
+        </div>
+
+        <a href="index.html" class="back-link">← Back to Airbus A220 Home</a>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>© 2026 AviaTrust. Built on Solana. | Contract: 9e4d52thV9Tk5gSByJBMyzopDDdV1iNAmXYSskHEXtEY</p>
+    </div>
+</footer>
+
+<script>
+    const ideas = [
+        { icon: '💺', title: 'New A220 aircraft sales (list ~$110M)', cat: 'sales' },
+        { icon: '📝', title: 'Used A220 resale marketplace', cat: 'sales' },
+        { icon: '✍️', title: 'A220 purchase contract signing', cat: 'sales' },
+        { icon: '💵', title: 'Aircraft sale escrow via smart contract', cat: 'sales' },
+        { icon: '🌍', title: 'Cross-border aircraft delivery', cat: 'sales' },
+        { icon: '📋', title: 'Aircraft title transfer (tokenized)', cat: 'sales' },
+        { icon: '🤝', title: 'Aircraft dealer commissions', cat: 'sales' },
+        { icon: '🛫', title: 'AirAsia 150 order tracking', cat: 'sales' },
+        { icon: '✈️', title: 'A220 leasing rights (1,000+ orders)', cat: 'leasing' },
+        { icon: '📋', title: 'Lease payment tracking', cat: 'leasing' },
+        { icon: '🔁', title: 'Lease transfer & assignment', cat: 'leasing' },
+        { icon: '💰', title: 'Lease yield distribution', cat: 'leasing' },
+        { icon: '📅', title: 'Lease maturity & renewal', cat: 'leasing' },
+        { icon: '🔧', title: 'PW1500G engine parts (2000+)', cat: 'parts' },
+        { icon: '🔩', title: 'Composite airframe parts (1500+)', cat: 'parts' },
+        { icon: '🧩', title: 'Wing components (800+)', cat: 'parts' },
+        { icon: '⚙️', title: 'Landing gear components (400+)', cat: 'parts' },
+        { icon: '📦', title: 'Avionics & cockpit parts (300+)', cat: 'parts' },
+        { icon: '🛠️', title: 'AOG (Aircraft on Ground) parts', cat: 'parts' },
+        { icon: '🔋', title: 'Power & battery systems', cat: 'parts' },
+        { icon: '🪟', title: 'Windows, doors, interiors', cat: 'parts' },
+        { icon: '🏦', title: 'SWIFT international wire', cat: 'payments' },
+        { icon: '🇪🇺', title: 'SEPA euro transfers', cat: 'payments' },
+        { icon: '💳', title: 'POS terminal payments', cat: 'payments' },
+        { icon: '🇨🇳', title: 'CIPS China cross-border', cat: 'payments' },
+        { icon: '🇺🇸', title: 'Fedwire & CHIPS (USD)', cat: 'payments' },
+        { icon: '🇦🇪', title: 'BUNA Arab payments', cat: 'payments' },
+        { icon: '🇮🇳', title: 'UPI India instant', cat: 'payments' },
+        { icon: '🇧🇷', title: 'PIX Brazil instant', cat: 'payments' },
+    ];
+
+    const grid = document.getElementById('fintechGrid');
+
+    function render(category = 'all') {
+        grid.innerHTML = '';
+        const filtered = category === 'all' ? ideas : ideas.filter(i => i.cat === category);
+        filtered.forEach(idea => {
+            const card = document.createElement('div');
+            card.className = 'fintech-card';
+            card.innerHTML = `
+                <div class="fc-icon">${idea.icon}</div>
+                <div class="fc-title">${idea.title}</div>
+                <div class="fc-cat">${idea.cat}</div>
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    render('all');
+
+    document.querySelectorAll('.cat-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            render(this.dataset.cat);
+        });
+    });
+</script>
+
+<script src="counter.js"></script>
+
+</body>
+</html>
