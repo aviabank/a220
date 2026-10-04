@@ -5,48 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Airbus A220 (€A220) — Buy with Card, SWIFT, SEPA</title>
     <link rel="icon" href="a220_logo.png" />
+    <link rel="stylesheet" href="ai-agent.css" />
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background: #0A0E27; color: #E0E6FF;
-            line-height: 1.6; padding-top: 80px; padding-bottom: 60px;
-        }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0A0E27; color: #E0E6FF; line-height: 1.6; padding-top: 80px; padding-bottom: 60px; }
         .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
-        .glass-card {
-            background: rgba(26, 30, 65, 0.6); backdrop-filter: blur(12px);
-            border: 1px solid rgba(255,255,255,0.05); border-radius: 24px;
-            padding: 40px; margin-bottom: 24px;
-        }
+        .glass-card { background: rgba(26, 30, 65, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); border-radius: 24px; padding: 40px; margin-bottom: 24px; }
         .glass-card h1 { font-size: 32px; margin-bottom: 8px; }
         .glass-card h1 .highlight { color: #2ECC40; }
         .glass-card .sub { color: #8A94C8; margin-bottom: 24px; }
         .method-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 24px; }
-        .method-card {
-            background: rgba(26,30,65,0.3); border: 1px solid #1E2350;
-            border-radius: 16px; padding: 20px 16px; text-align: center;
-            transition: 0.3s; text-decoration: none; color: #E0E6FF;
-        }
+        .method-card { background: rgba(26,30,65,0.3); border: 1px solid #1E2350; border-radius: 16px; padding: 20px 16px; text-align: center; transition: 0.3s; text-decoration: none; color: #E0E6FF; }
         .method-card:hover { border-color: #2ECC40; transform: translateY(-4px); }
         .method-card .icon { font-size: 32px; display: block; margin-bottom: 8px; }
         .method-card .name { font-weight: 600; }
         .method-card .desc { font-size: 13px; color: #5A649A; }
-        .contract-box {
-            background: rgba(46,204,64,0.05); border: 1px solid rgba(46,204,64,0.15);
-            border-radius: 12px; padding: 16px; margin: 20px 0;
-            text-align: center; font-size: 13px; color: #8A94C8;
-            font-family: 'Courier New', monospace;
-        }
+        .contract-box { background: rgba(46,204,64,0.05); border: 1px solid rgba(46,204,64,0.15); border-radius: 12px; padding: 16px; margin: 20px 0; text-align: center; font-size: 13px; color: #8A94C8; font-family: 'Courier New', monospace; }
         .contract-box .addr { color: #2ECC40; }
         .contract-box .copy-btn { background: transparent; border: none; color: #5A649A; cursor: pointer; font-size: 13px; font-family: 'Segoe UI', sans-serif; }
         .contract-box .copy-btn:hover { color: #2ECC40; }
         .contract-box .solscan-link { color: #5A649A; text-decoration: none; font-size: 13px; font-family: 'Segoe UI', sans-serif; margin-left: 8px; }
         .contract-box .solscan-link:hover { color: #fff; }
-        .pool-box {
-            background: rgba(74,140,255,0.05); border: 1px solid rgba(74,140,255,0.15);
-            border-radius: 12px; padding: 16px; margin: 20px 0;
-            text-align: center; font-size: 13px; color: #8A94C8; font-family: 'Courier New', monospace;
-        }
+        .pool-box { background: rgba(74,140,255,0.05); border: 1px solid rgba(74,140,255,0.15); border-radius: 12px; padding: 16px; margin: 20px 0; text-align: center; font-size: 13px; color: #8A94C8; font-family: 'Courier New', monospace; }
         .pool-box .addr { color: #4A8CFF; }
         .pool-box .copy-btn { background: transparent; border: none; color: #5A649A; cursor: pointer; font-size: 13px; font-family: 'Segoe UI', sans-serif; }
         .pool-box .copy-btn:hover { color: #4A8CFF; }
@@ -55,12 +35,7 @@
         .back-link { display: inline-block; margin-top: 20px; color: #2ECC40; text-decoration: none; font-weight: 500; }
         .back-link:hover { text-decoration: underline; }
         .logo-img { height: 60px; width: auto; margin-bottom: 20px; border-radius: 50%; }
-        .counter-box {
-            text-align: center; padding: 16px;
-            background: rgba(46,204,64,0.05); border-radius: 12px;
-            margin: 20px 0; font-size: 14px; color: #8A94C8;
-            font-family: 'Courier New', monospace;
-        }
+        .counter-box { text-align: center; padding: 16px; background: rgba(46,204,64,0.05); border-radius: 12px; margin: 20px 0; font-size: 14px; color: #8A94C8; font-family: 'Courier New', monospace; }
         .counter-box .counter-visitors { color: #2ECC40; font-weight: 600; }
         .counter-box .counter-holders { color: #2ECC40; font-weight: 600; }
         .counter-box .counter-clients { color: #2ECC40; font-weight: 600; }
@@ -149,6 +124,7 @@
 </div>
 
 <script src="counter.js"></script>
+<script src="ai-agent.js"></script>
 
 </body>
 </html>
